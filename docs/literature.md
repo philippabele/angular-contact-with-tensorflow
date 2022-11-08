@@ -14,7 +14,7 @@ https://www.oreilly.com/library/view/deep-learning-from/9781492041405/?ref=mento
 - An Introduction to Statistical Learning:
 https://www.statlearning.com/?ref=mentorcruise
 - Praxiseinstieg Machine Learning mit Scikit-Learn und TensorFlow: Konzepte, Tools und Techniken für intelligente Systeme:
-https://www.amazon.de/Praxiseinstieg-Machine-Learning-Scikit-Learn-TensorFlow/dp/3960090617
+https://www.oreilly.com/library/view/praxiseinstieg-machine-learning/9781492065838/
 
 ### Literature TensorFlow
 - TensorFlow Guide: 
