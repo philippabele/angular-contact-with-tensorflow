@@ -4,6 +4,7 @@ on:
       - main
     paths:
       - 'docs/**'
+
 jobs:
   compile:
     runs-on: ubuntu-latest
@@ -13,14 +14,17 @@ jobs:
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v2
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
           working_directory: ${{ env.working_directory }}
           root_file: main.tex
+
       - name: Rename main.pdf
         run: |
-          mv "${{ working_directory }}/main.pdf" "${{ pdf_name }}.pdf"
+          mv "${{ env.working_directory }}/main.pdf" "${{ env.pdf_name }}.pdf"
+
       - name: Upload pdf artifact
         uses: actions/upload-artifact@v2
         with:
