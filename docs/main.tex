@@ -1,5 +1,6 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage{graphicx}
+\usepackage{listings}
 
 \title{Angular contact with TensorFlow}
 \author{Rocco Malisi}
@@ -53,8 +54,17 @@
 		\item Input layer with 2 neurons for features Fr and n
 		\item First hidden layer with 512 neurons and activation function ReLU
 		\item Second hidden layer with 512 neurons and activation function ReLU
-		\item Output layer with 1 neuron indicating the value of lifetime
-	\end{itemize}
+		\item Output layer with 1 neuron predicting the value of lifetime
+	\end{itemize} 
+	\ \\The code used to create a model with this architecture in TensorFlow:
+	\begin{lstlisting}
+		model = tf.keras.Sequential([
+		layers.Dense(512, activation='relu', input_shape=[2]), 
+		layers.Dense(512, activation='relu'),  
+		layers.Dense(1)
+		])
+	\end{lstlisting}
+
 	
 	
 	
