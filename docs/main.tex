@@ -18,6 +18,7 @@
 	\newpage
 	
 	\section{Introduction}
+	Topics that should be covered here: EDA, tensorflow, python tools: (jupyter, matplotlib, numpy, pandas, scikitlearn), ml topics (activation function, evaluation metrics, optimizers,...)
 	\section{Methods}
 	\section{Results}
 	\subsection{Performing an EDA on dataset \#1}
@@ -56,7 +57,7 @@
 		\item Second hidden layer with 512 neurons and activation function ReLU
 		\item Output layer with 1 neuron predicting the value of lifetime
 	\end{itemize} 
-	\ \\The code used to create a model with this architecture in TensorFlow:
+	\ \\The code used to build the model architecture:
 	\begin{lstlisting}
 		model = tf.keras.Sequential([
 		layers.Dense(512, activation='relu', input_shape=[2]), 
@@ -64,7 +65,31 @@
 		layers.Dense(1)
 		])
 	\end{lstlisting}
-
+	The next step is model compilation which includes defining the loss function, optimizer and metrics. The model uses mean absolute percentage error as its loss function, the Adam algorithm as its optimizer and mean average percentage error as evaluation metric. 
+	\\ \\ The code used to compile the model:
+	\begin{lstlisting}
+		model.compile(loss='mean_absolute_percentage_error',
+		optimizer=tf.keras.optimizers.Adam(),
+		metrics=[tf.keras.metrics.MeanAbsolutePercentageError()],
+		run_eagerly=True)
+	\end{lstlisting}
+	In the final step, the dataset will be prepared and used for training and evaluating the model. First the dataset is split up into training and test data using the scikit-learn train\textunderscore test\textunderscore split function with a train\textunderscore size of 0.8 and a test\textunderscore size of 0.2. The split data is then used to train and evaluate the model. The mean absolute error metric is used to evaluate the model.
+	\\ \\ The code to train and evaluate the model:
+	\begin{lstlisting}
+		X_train, X_test, y_train, y_test = 
+		train_test_split(dataset[['Fr', 'n']], dataset['Lifetime'], 
+		shuffle=True, 
+		train_size=0.8, 
+		test_size=0.2)
+		
+		model.fit(X_train, y_train, epochs=10, verbose=0)
+		
+		test_loss = model.evaluate(X_test, y_test)
+	\end{lstlisting} 
+	The evaluation error of this model is 68\% using the mean average percentage error metric. This means that the models predicted value of lifetime is off by 68\% on average.
+	
+	
+	
 	
 	
 	
