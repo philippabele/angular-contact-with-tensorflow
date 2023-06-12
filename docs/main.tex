@@ -18,12 +18,21 @@
 	\newpage
 	
 	\section{Introduction}
-	Topics that should be covered here: EDA, tensorflow, python tools: (jupyter, matplotlib, numpy, pandas, scikitlearn), ml topics (activation function, evaluation metrics, optimizers,...)
+	\subsection{Exploratory Data Analysis}
+	
+	\subsection{Python tools and libraries for machine learning}
+	This section introduces the python tools and libraries used in this project. \\
+	\textbf{TensorFlow}: \\ TensorFlow is an open-source machine learning framework developed by Google. It offers simple ways to build, train and deploy models. TensorFlow has powerful and complex functionalities like distributed computing and visualization, but for this project it will only be used to build neural networks.\cite{tensorflow2015-whitepaper} \\
+	\textbf{Jupyter}: \\ Jupyter is an open-source library which is mostly used in Data Science. It features \cite{jupyter}
+	\textbf{numpy}: \\
+	\textbf{pandas}: \\
+	\textbf{matplotlib}: \\
+	\textbf{scikit-learn}: \\
 	\section{Methods}
 	\section{Results}
-	\subsection{Performing an EDA on dataset \#1}
-	To get a better understanding of dataset \#1, an EDA is performed. The objective is to identify patterns and relationships in the data. The insights gained by this analysis will be used in building and improving the model.
-	\newline The dataset consists of three columns and 1365 rows. The columns are 'Fr' (radial force in N[Newton]), 'n' (rotational speed in rpm[revolutions per minute]) and 'Lifetime' (lifetime in h[hours]). The dataset does not contain any empty or null values and therefore does not require cleaning.
+	\subsection{Performing an EDA on the dataset}
+	To get a better understanding of the dataset, an EDA is performed. The objective is to identify patterns and relationships in the data. The insights gained by this analysis will be used in building and improving the model.
+	\newline The dataset cons s of three columns and 1365 rows. The columns are 'Fr' (radial force in N[Newton]), 'n' (rotational speed in rpm[revolutions per minute]) and 'Lifetime' (lifetime in h[hours]). The dataset does not contain any empty or null values and therefore does not require cleaning.
 	\newline Figure 1 shows a plot of column Fr. The value of Fr starts at 200 and is increased by 100 every 35 rows throughout the whole dataset. The final and highest value of Fr is 4000. 
 	\newline The column Lifetime is shown in figure 3. The highest value at the first row is 88445568 but it drops rapidly throughout the dataset to just 116 in the last row. Every 35 rows the value has a local peak but then quickly drops again. Figure 2 is a plot of rows 1000 and up which shows that this trend continues all the way throughout the dataset even though it can't be seen when plotting all rows. 
 	\newline The column n is shown in figure 4. The value of n follows a pattern which repeats every 35 rows for 39 times. From the starting value of 100, n is  increased linearly to its peak value of 3500, after which it drops back to 100 and the next iteration begins. 
@@ -48,9 +57,9 @@
 	
 	
 	
-	\subsection{Building the first model on dataset \#1}
-	This chapter is about building the first model on dataset \#1. It will predict the lifetime of the bearing system using Fr and n as input features. The EDA already showed that the dataset does not require cleaning or further preprocessing.
-	\newline This first model will be a simple neural network. To improve the models accuracy, the number of hidden layers and the number of neurons per hidden layer were tested in different combinations. The best accuracy in predicting the lifetime was achieved with the following configuration: 
+	\subsection{Building the model}
+	This chapter is about building the model on basis of the dataset. It will predict the lifetime of the bearing system using Fr and n as input features. The EDA already showed that the dataset does not require cleaning or further preprocessing.
+	\newline This model will be a simple neural network. To improve the models accuracy, the number of hidden layers and the number of neurons per hidden layer were tested in different combinations. The best accuracy in predicting the lifetime was achieved with the following configuration: 
 	\begin{itemize}
 		\item Input layer with 2 neurons for features Fr and n
 		\item First hidden layer with 512 neurons and activation function ReLU
@@ -87,6 +96,9 @@
 		test_loss = model.evaluate(X_test, y_test)
 	\end{lstlisting} 
 	The evaluation error of this model is 68\% using the mean average percentage error metric. This means that the models predicted value of lifetime is off by 68\% on average.
+	
+	\section{Conclusion}
+	a
 	
 	
 	
