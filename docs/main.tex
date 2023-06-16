@@ -1,16 +1,21 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{url}
 
 \title{Angular contact with TensorFlow}
-\author{Rocco Malisi}
+\author{DHBW Mosbach/Bad Mergentheim - Rocco Malisi}
 
 \begin{document}
 	\maketitle
 	\newpage
-	
+		
 	\begin{abstract}
-		Abstract text here alsdjfsdalsdjlfksdjlk
+	Angular contact ball bearings (ACBB) are used in mechanical systems, where their reliability and performance are often critical. Being able to accurately predict the lifetime of ACBBs is important to provide optimal maintenance and avoid failures. This project is about building a model which is able to predict the lifetime of a ACBB. 
+	\\ The model is built as a simple neural network using the TensorFlow framework. The data basis is real-world ACBB operational data, containing the rotational speed and radial force as input parameters. 
+	\\ To evaluate the models performance, the mean average percentage error (MAPE) metric is used. When comparing the predictions made by the model to actual data, the MAPE metric shows an error of 68 percent.
+	\\ Future work involves performing additional data preprocessing and exploring different structures and types of neural networks in order to increase the accuracy of the model.
+	
 	\end{abstract}
 	\newpage
 	
@@ -19,16 +24,16 @@
 	
 	\section{Introduction}
 	\subsection{Exploratory Data Analysis}
-	
+	Exploratory Data Analysis (EDA) is a subdomain of statistics which was first introduced by John W. Tukey in 1977.\cite{tukey} EDA focuses on formulating new hypothesis on basis of the dataset rather than only verifying already existing assumptions. The two major methods when performing EDA are visual and quantitative analysis. Visual analysis is done using plots and diagrams, e.g. boxplots and histograms. Quantitative analysis using procedures like median polish is only done sparingly.
 	\subsection{Python tools and libraries for machine learning}
 	This section introduces the python tools and libraries used in this project. \\
 	\textbf{TensorFlow}: \\ TensorFlow is an open-source machine learning framework developed by Google. It offers simple ways to build, train and deploy models. TensorFlow has powerful and complex functionalities like distributed computing and visualization, but for this project it will only be used to build neural networks.\cite{tensorflow2015-whitepaper} \\
-	\textbf{Jupyter}: \\ Jupyter is an open-source library which is mostly used in Data Science. It features \cite{jupyter}
-	\textbf{numpy}: \\
-	\textbf{pandas}: \\
-	\textbf{matplotlib}: \\
-	\textbf{scikit-learn}: \\
+	\textbf{Jupyter}: \\ Jupyter is an open-source library which is mostly used in Data Science. It features notebooks, which are documents combining code, text and visualizations. Code is executed in cells which can be run individually or in specific orders in order to make working with different resources easier.\cite{jupyter} \\
+	\textbf{pandas}: pandas is an open-source python library providing high-performance, easy-to-use data structures and data analysis tools. It is mostly used for data preprocessing, data exploration and input/output of data.\cite{pandas} \\
+	\textbf{Matplotlib}: Matplotlib is a python library for creating static, animated and interactive visualizations. It features a wide range of plot types and layouts. Matplotlib also enables exporting high-quality visualizations for publications or presentations.\cite{matplotlib} \\
+	\newpage
 	\section{Methods}
+	The objective of this project is to build a model which predicts the lifetime of an angular contact ball bearing (ACBB). This is achieved through an experimental approach, where a model is built using a real-world dataset. After the dataset is analyzed and understood, a neural network predicting the lifetime is built. The performance of the model is improved by experimenting with type and structure of the network. The goal is to create a model, which predicts the lifetime of the ACBB with high accuracy.  
 	\section{Results}
 	\subsection{Performing an EDA on the dataset}
 	To get a better understanding of the dataset, an EDA is performed. The objective is to identify patterns and relationships in the data. The insights gained by this analysis will be used in building and improving the model.
@@ -38,24 +43,6 @@
 	\newline The column n is shown in figure 4. The value of n follows a pattern which repeats every 35 rows for 39 times. From the starting value of 100, n is  increased linearly to its peak value of 3500, after which it drops back to 100 and the next iteration begins. 
 	\newline These findings already give insights about potential relationships of the variables. The peaks in the value of lifetime appear when n is at its lowest at 100. When n increases, the peak in lifetime drops sharply. This could be due to the increased load on the bearing system as n increases. As Fr steadily increases throughout the dataset, the peaks of lifetime become smaller even though n follow the same pattern. Therefore Fr must also have a negative correlation with lifetime.
 	\newline Figure 5 shows the correlation matrix of the dataset. Both Fr and n show a weak negative correlation with lifetime of -0.21 and -0.12, respectively. 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	\subsection{Building the model}
 	This chapter is about building the model on basis of the dataset. It will predict the lifetime of the bearing system using Fr and n as input features. The EDA already showed that the dataset does not require cleaning or further preprocessing.
@@ -83,7 +70,8 @@
 		run_eagerly=True)
 	\end{lstlisting}
 	In the final step, the dataset will be prepared and used for training and evaluating the model. First the dataset is split up into training and test data using the scikit-learn train\textunderscore test\textunderscore split function with a train\textunderscore size of 0.8 and a test\textunderscore size of 0.2. The split data is then used to train and evaluate the model. The mean absolute error metric is used to evaluate the model.
-	\\ \\ The code to train and evaluate the model:
+	\newpage
+	The code to train and evaluate the model:
 	\begin{lstlisting}
 		X_train, X_test, y_train, y_test = 
 		train_test_split(dataset[['Fr', 'n']], dataset['Lifetime'], 
@@ -96,41 +84,6 @@
 		test_loss = model.evaluate(X_test, y_test)
 	\end{lstlisting} 
 	The evaluation error of this model is 68\% using the mean average percentage error metric. This means that the models predicted value of lifetime is off by 68\% on average.
-	
-	\section{Conclusion}
-	a
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	\begin{figure}
 		\caption{Plot of Fr}
@@ -157,6 +110,10 @@
 		\centering
 		\includegraphics[scale=0.5]{assets/dataset1_correlation_matrix.png}
 	\end{figure}
+	
+	\newpage
+	\section{Conclusion}
+	The objective of this project was to build a model that is able to accurately predict the lifetime of a ACBB. A simple neural network was built and trained using the real-world dataset. By experimenting with the structure of the network and measuring its performance with the MAPE metric, the best model had an error of 68 percent. This shows that a model predicting the lifetime can be built using the rotational speed and radial force as input features. However, the high error of 68 percent shows, that further data preprocessing or a different neural network structure is necessary in order to improve the performance of the model. In conclusion, this project shows that is it possible to predict the lifetime of a ACBB using a model. In order to use such a model in real-world applications, the performance must first be improved significantly.
 
 	\newpage
 	\bibliographystyle{plain} 
